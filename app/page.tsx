@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import SearchBar from './component/SearchBar'
 
 const page = () => {
   return (
@@ -25,8 +26,20 @@ const page = () => {
             <p className="mt-6">
               Powerful, self-serve product and growth analytics to help you convert, engage, and retain more.
             </p>
+
+          <SearchBar/>
+            </div>
+            <div>
+              herocarsoul
             </div>
     </div>
+    </section>
+    <section className='trending-section '>
+      <h2 className='section-text'>Trending</h2>
+      <div className='flex flex-wrap  gap-x-8 gap-y-16'>
+    {['apple Iphone 15','book' ,'snatcher'].map((item,index) =><div key={index}>{item}</div>)}
+      </div>
+
     </section>
     </>
   )
