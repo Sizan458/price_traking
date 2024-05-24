@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 import SearchBar from './component/SearchBar'
+import HeroCarousel from './component/HeroCarousel'
 
 const page = () => {
   return (
     <>
-    <section className='px-6 py-24  md:px-20 border-2 border-red-500'>
+    <section className='px-6 py-24  md:px-20 '>
     <div className='flex max-xl:flex-col gap-16'>
     <div className="flex flex-col justify-center"> 
             <p className="small-text">
@@ -30,7 +31,7 @@ const page = () => {
           <SearchBar/>
             </div>
             <div>
-              herocarsoul
+             <HeroCarousel/>
             </div>
     </div>
     </section>
