@@ -27,21 +27,18 @@ export async function  scrapeAmazonProduct(url: string){
     const $=  cheerio.load(response.data)
      // extract the product information
      const title = $('#productTitle').text().trim();
-     const currentPrice= extractPrice(
-      
-           $('.priceTopay span.a-price-whole  ' ),
-           $('a.size.base.a-color-price'),
-           $('.a-button-selected .a-color-base'),
-           $('.a-price.a-text-price')
-        
-     );
-     const originalPrice=extractPrice(
+     const currentPrice = extractPrice(
+        $('.priceToPay span.a-price-whole'),
+        $('.a.size.base.a-color-price'),
+        $('.a-button-selected .a-color-base'),
+      );
+      const originalPrice = extractPrice(
         $('#priceblock_ourprice'),
-        $(".a-price.a-text-price span.a-offscreen"),
-        $('#listprice'),
+        $('.a-price.a-text-price span.a-offscreen'),
+        $('#listPrice'),
         $('#priceblock_dealprice'),
         $('.a-size-base.a-color-price')
-     )
+      );
      const outofStock = $ ('#availablility span').text().trim().toLowerCase()==='currently unavailable';
      const images =
      $('#imgBlkFront').attr('data-a-dynamic-image')||
@@ -54,6 +51,7 @@ export async function  scrapeAmazonProduct(url: string){
      const rating = $('.a-icon-alt').eq(0).text().split(' ')[0];
      const category = $('#twotabsearchtextbox').val()?.split('+');
     const ratingCount = $('#acrCustomerReviewText').text().match(/\d{1,3}(,\d{3})*/)[0];
+    const description = extractDescription($)
     
 
     
@@ -69,15 +67,15 @@ export async function  scrapeAmazonProduct(url: string){
         rating:Number(rating),
         ratingCount,
         category:category,
-        currentPrice:Number(currentPrice) || Number(originalPrice),
-        originalPrice:Number(originalPrice) || Number(currentPrice),
+        currentPrice:Number(currentPrice) || 0,
+        originalPrice:Number(originalPrice) ||  0,
         discountRate:Number(discountRate),
         priceHistory:[],
         isOutOFStock:outofStock,
-       
-        lowestPrice:Number(currentPrice) || Number(originalPrice),
-        hightPrice:Number(originalPrice) || Number(currentPrice),
-        avgPrice:Number(currentPrice) || Number(originalPrice)
+        description:description,
+        lowestPrice:Number(currentPrice) || Number(originalPrice) ,
+        highestPrice:Number(originalPrice) || Number(currentPrice),
+        avgPrice:Number(currentPrice) || Number(originalPrice),
 
         
 

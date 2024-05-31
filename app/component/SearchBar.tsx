@@ -1,12 +1,17 @@
 'use client'
 
 import { scraprAndStoreProduct } from "@/lib/action";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import SearchBox from "./SearchBox";
 
-const SearchBar = () => {
+
+const SearchBar =  () => {
+
+
   const [Search, setSearch]= useState('')
   const [loading, setLoading]= useState(false)
+  //const [product, setProducts] = useState([]);
   const isValiedAmazonUrl=(url:string) =>{
  try{
   const parseUrl= new URL(url);
@@ -21,6 +26,7 @@ const SearchBar = () => {
  }
  
   }
+
     const handleSubmit = async(event:FormEvent<HTMLFormElement>)=>{
         event.preventDefault();
         const  isValidLink=isValiedAmazonUrl(Search)
@@ -53,13 +59,20 @@ const SearchBar = () => {
        
 
     }
+ 
+
+    
   return (
-    <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
+    <div>
+      <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
     <input type="text"  value={Search} onChange={(e)=>setSearch(e.target.value)} placeholder="Inter Your Product Link Here" className="searchbar-input"/>
     <button  type="submit" className="searchbar-btn" disabled={Search=== ""}>
      {loading ? 'Searching...': 'Search'}
       </button>
+
     </form>
+   
+    </div>
   )
 }
 

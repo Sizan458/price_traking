@@ -15,6 +15,7 @@ export async function  scraprAndStoreProduct(productUrl: string){
   if(!productUrl) return;
 
    let product = scrapedProduct
+   console.log(product)
    const existingProduct = await  Product.findOne({url:scrapedProduct.url});
    if(existingProduct){
     const updatePriceHistory=[
@@ -64,3 +65,17 @@ export  async function getAllProducts(){
         console.log(error)
     }
 }
+export  async function getSimilarProducts(productId:string){
+    try {
+        connecttoDB()
+        const currentProduct = await Product.findById(productId);
+        if(!currentProduct) return null;
+        const similarProducts= await  Product.find({
+            _id:{$ne:productId}
+        }).limit(4)
+    return similarProducts
+    } catch (error) {
+        console.log(error)
+    }
+}
+
