@@ -49,8 +49,13 @@ export async function  scrapeAmazonProduct(url: string){
      const currency = extractCurrency($('.a-price-symbol'));
      const  discountRate= $('.savingsPercentage').text().replace(/[-%]/g, '');
      const rating = $('.a-icon-alt').eq(0).text().split(' ')[0];
-     const category = $('#twotabsearchtextbox').val()?.split('+');
-    const ratingCount = $('#acrCustomerReviewText').text().match(/\d{1,3}(,\d{3})*/)[0];
+     const val = $('#twotabsearchtextbox').val();
+     const category: any = typeof val === 'string' ? val.split('+') : [];
+     
+     const reviewText = $('#acrCustomerReviewText').text();
+    const match = reviewText ? reviewText.match(/\d{1,3}(,\d{3})*/) : null;
+    const ratingCount = match ? match[0] : '0'; 
+    
     const description = extractDescription($)
     
 
