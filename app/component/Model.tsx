@@ -1,12 +1,12 @@
 'use client';
 import { addUserEmailToProduct } from '@/lib/action';
 import Image from 'next/image';
-import React, { FC, FormEvent, useState } from 'react';
+import React, {  FormEvent, useState } from 'react';
 interface Props{
   productId:string
 }
 
-const ModalWithCheckbox: FC = ({productId}:Props) => {
+const ModalWithCheckbox = ({productId}:Props) => {
   const [isSubmitting , setIsSubmitting]=useState(false);
 const [email, setEmail] = useState('')
 const handelSubmit = async(e:FormEvent<HTMLFormElement>)=>{
