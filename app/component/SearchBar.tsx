@@ -3,7 +3,7 @@
 import { scraprAndStoreProduct } from "@/lib/action";
 import { FormEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import SearchBox from "./SearchBox";
+
 
 
 const SearchBar =  () => {
