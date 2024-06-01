@@ -44,7 +44,7 @@ export async function  scrapeAmazonProduct(url: string){
      $('#imgBlkFront').attr('data-a-dynamic-image')||
      $('#landingImage').attr('data-a-dynamic-image')||
      '{}'
-     const imageUrls = Object.keys(JSON.parse(images));
+     const imageUrls:any = Object.keys(JSON.parse(images));
 
      const currency = extractCurrency($('.a-price-symbol'));
      const  discountRate= $('.savingsPercentage').text().replace(/[-%]/g, '');
@@ -62,7 +62,7 @@ export async function  scrapeAmazonProduct(url: string){
      const data = {
         url,
         currency:currency||"$",
-        image:imageUrls,
+        image:imageUrls[0],
         title,
         rating:Number(rating),
         ratingCount,
@@ -71,7 +71,7 @@ export async function  scrapeAmazonProduct(url: string){
         originalPrice:Number(originalPrice) ||  0,
         discountRate:Number(discountRate),
         priceHistory:[],
-        isOutOFStock:outofStock,
+        isOutOfStock:outofStock,
         description:description,
         lowestPrice:Number(currentPrice) || Number(originalPrice) ,
         highestPrice:Number(originalPrice) || Number(currentPrice),

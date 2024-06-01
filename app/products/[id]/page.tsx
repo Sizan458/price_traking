@@ -93,7 +93,7 @@ const ProductDetails =  async({params:{id}}:Props) => {
         />
 
        </div>
-      < Model/>
+      < Model productId={id}/>
 
       </div>
       
