@@ -17,7 +17,7 @@ export async function  scraprAndStoreProduct(productUrl: string){
   if(!productUrl) return;
 
    let product = scrapedProduct
-   console.log(product)
+  
    const existingProduct = await  Product.findOne({url:scrapedProduct.url});
    if(existingProduct){
     const updatePriceHistory=[
