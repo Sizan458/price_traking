@@ -1,5 +1,5 @@
 'use client'
-import { searchProducts } from "@/lib/action";
+import { scraprAndStoreProduct } from "@/lib/action";
 import { useState } from "react";
 
 const Search = () => {
@@ -14,7 +14,7 @@ const Search = () => {
     setError(null);
 
     try {
-      const products = await searchProducts(searchQuery);
+      const products = await scraprAndStoreProduct(searchQuery);
       setSearchResults(products);
     } catch (err) {
       setError("Failed to fetch products");
@@ -40,7 +40,7 @@ const Search = () => {
       {error && <p>{error}</p>}
       <div>
         {searchResults.length > 0 ? (
-          searchResults.map((product) => (
+          searchResults.map((product:any) => (
             <div key={product._id}>
               <h2>{product.title}</h2>
              
