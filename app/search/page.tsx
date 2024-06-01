@@ -6,15 +6,15 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSearch = async (event:any) => {
     event.preventDefault();
     setIsLoading(true);
-    setError(null);
+    setError('');
 
     try {
-      const products = await scraprAndStoreProduct(searchQuery);
+      const products:any = await scraprAndStoreProduct(searchQuery);
       setSearchResults(products);
     } catch (err) {
       setError("Failed to fetch products");
